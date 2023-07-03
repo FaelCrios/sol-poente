@@ -104,7 +104,9 @@ export const Historia = () => {
       <h1>Os reinos presentes neste mundo:</h1>
       <div>
         {reinos.slice(0, 2).map((reinos) => (
-          <ContainerHistoriaReinos reinos={reinos} key={reinos.id} />
+          <ContainerHistoriaReinos 
+          reinos={reinos} 
+          key={reinos.id} />
         ))}
       </div>
     </div>

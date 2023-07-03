@@ -1,12 +1,33 @@
-import { ReinosModel } from "../../models/ReinosModel"
+import { ReinosModel } from "../../models/ReinosModel";
 
-export const ContainerHistoriaReinos: React.FC<{reinos: ReinosModel}> = (props) => {
-    return (
-        <div className="container flex mt-5 bg-dark rounded-5">
-        <h2>{props.reinos.nome}</h2>
-        <img src={require(`../../images/${props.reinos.img}.jpg`)} width='600' alt="d" />
+export const ContainerHistoriaReinos: React.FC<{
+  reinos: ReinosModel;
+  key: number;
+}> = (props) => {
+  return (
+    <div className="container flex mt-5 bg-dark rounded-5">
+      <h2>{props.reinos.nome}</h2>
+
+      <button
+        className="btn btn-dark rounded-circle"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target={`#${props.reinos.id}`}
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        <img
+          className="rounded-circle"
+          src={require(`../../images/${props.reinos.img}.jpg`)}
+          width="450"
+          alt="d"
+        />
+      </button>
+
+      <div className="collapse" id={`${props.reinos.id}`}>
         <div>{props.reinos.descricao}</div>
         <div>Devotos a: {props.reinos.afiliacao}</div>
-        </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
