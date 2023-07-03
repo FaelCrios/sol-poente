@@ -95,12 +95,16 @@ export const Historia = () => {
 
   return (
     <div className="container mt-5">
+      <h1>Aqui estão presentes os principais personagens deste universo</h1>
+      <div>
       {personagens.slice(0, 1).map((personagem) => (
         <ContainerHistoriaPersonagem
           personagem={personagem}
           key={personagem.id}
         />
       ))}
+      </div>
+
       <h1>Os reinos presentes neste mundo:</h1>
       <div>
         {reinos.slice(0, 2).map((reinos) => (
