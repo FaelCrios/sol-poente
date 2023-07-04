@@ -12,7 +12,7 @@ export const ContainerHistoriaReinos: React.FC<{
         className="btn btn-dark rounded-circle"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target={`#${props.reinos.id}`}
+        data-bs-target={`#reinos${props.reinos.id}`}
         aria-expanded="false"
         aria-controls="collapseExample"
       >
@@ -24,7 +24,7 @@ export const ContainerHistoriaReinos: React.FC<{
         />
       </button>
 
-      <div className="collapse" id={`${props.reinos.id}`}>
+      <div className="collapse" id={`reinos${props.reinos.id}`}>
         <div>{props.reinos.descricao}</div>
         <div>Devotos a: {props.reinos.afiliacao}</div>
       </div>

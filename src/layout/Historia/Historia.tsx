@@ -4,14 +4,23 @@ import { PersonagensModel } from "../../models/PersonagensModel";
 import { ContainerHistoriaPersonagem } from "./ContainerHistoriaPersonagem";
 import { ReinosModel } from "../../models/ReinosModel";
 import { ContainerHistoriaReinos } from "./ContainerHistoriaReinos";
+import { NavbarReinos } from "./NavbarReinos";
+import { NavLink, Route, Switch } from "react-router-dom";
+import { Tedon } from "./Reinos/Tedon";
+import { Anut } from "./Reinos/Anut";
+import { Rerin } from "./Reinos/Rerin";
+import { Izend } from "./Reinos/Izend";
 
 export const Historia = () => {
   const [personagens, setPersonagens] = useState<PersonagensModel[]>([]);
   const [reinos, setReinos] = useState<ReinosModel[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
+  const [localizacaoSelection, setLocalizacaoSelection] = useState("");
+  const [search, setSearchUrl] = useState("");
 
   useEffect(() => {
+    //fetch dos personagens
     const fetchPersonagens = async () => {
       const baseUrl: string = "http://localhost:8080/personagens";
 
@@ -93,26 +102,62 @@ export const Historia = () => {
     </div>;
   }
 
+  const campoNavbar = (value: string) => {
+    if (value.toLocaleLowerCase() === "vogno") {
+      setLocalizacaoSelection(value);
+      setSearchUrl(`/reinos/${value}`);
+    } else {
+      setSearchUrl(`/reinos`);
+    }
+  };
+
   return (
-    <div className="container mt-5">
-      <h1>Aqui estão presentes os principais personagens deste universo</h1>
-      <div>
-      {personagens.slice(0, 1).map((personagem) => (
-        <ContainerHistoriaPersonagem
-          personagem={personagem}
-          key={personagem.id}
-        />
-      ))}
+    <div className="container mt-5 ">
+      <NavbarReinos />
+      <Switch>
+        <Route path="/reinos" exact>
+          <>
+            <h1>Explore o tortuoso mundo de Por sol!</h1>
+            <img
+              className="m-2"
+              src={require(`../../images/Laremoer-mapa.png`)}
+              width="1000"
+              alt="d"
+            />
+            <h2>Tente desbravar os 8 cantos do mundo</h2>
+          </>
+        </Route>
+        <Route path="/reinos/tedon">
+          <Tedon />
+        </Route>
+        <Route path="/reinos/anut">
+          <Anut />
+        </Route>
+        <Route path="/reinos/rerin">
+          <Rerin />
+        </Route>
+        <Route path="/reinos/izend">
+          <Izend />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
+
+{
+  /* <div>
+        {personagens.slice(0, 1).map((personagem) => (
+          <ContainerHistoriaPersonagem
+            personagem={personagem}
+            key={personagem.id}
+          />
+        ))}
       </div>
 
       <h1>Os reinos presentes neste mundo:</h1>
       <div>
         {reinos.slice(0, 2).map((reinos) => (
-          <ContainerHistoriaReinos 
-          reinos={reinos} 
-          key={reinos.id} />
+          <ContainerHistoriaReinos reinos={reinos} key={reinos.id} />
         ))}
-      </div>
-    </div>
-  );
-};
+      </div>*/
+}

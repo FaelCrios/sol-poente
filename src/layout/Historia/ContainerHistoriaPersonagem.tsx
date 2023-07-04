@@ -7,14 +7,14 @@ export const ContainerHistoriaPersonagem: React.FC<{
   key: number;
 }> = (props) => {
   return (
-    <div className="container mt-5 rounded-5">
+    <div className="container mt-5 rounded-5 ">
       <h2>{props.personagem.nome}</h2>
       <button
         className="btn btn-black rounded-circle"
         type="button"
         data-bs-toggle="collapse"
 
-        data-bs-target={`#${props.personagem.id}`}
+        data-bs-target={`#personagem${props.personagem.id}`}
         aria-expanded="false"
         aria-controls="collapseExample"
       >
@@ -28,7 +28,7 @@ export const ContainerHistoriaPersonagem: React.FC<{
         
       </figure>
       </button>
-      <div className="collapse" id={`${props.personagem.id}`}>
+      <div className="collapse" id={`personagem${props.personagem.id}`}>
       <figcaption className="fs-4">{props.personagem.descricao}</figcaption>
       <p>Afiliação: {props.personagem.afiliacao}</p>
       </div>
